@@ -248,16 +248,13 @@ export const pageQuery = graphql`
       filter: { fileAbsolutePath: { regex: "/content/projects/" } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
-      edges {
-        node {
+      edges {        node {
           frontmatter {
             date
             title
             tech
             github
             external
-            ios
-            android
             company
           }
           html

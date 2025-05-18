@@ -174,14 +174,14 @@ const Projects = () => {
           frontmatter: { showInProjects: { ne: false } }
         }
         sort: { fields: [frontmatter___date], order: DESC }
-      ) {
-        edges {
+      ) {        edges {
           node {
             frontmatter {
               title
               tech
               github
               external
+              range
             }
             html
           }
@@ -210,10 +210,9 @@ const Projects = () => {
   const projects = data.projects.edges.filter(({ node }) => node);
   const firstSix = projects.slice(0, GRID_LIMIT);
   const projectsToShow = showMore ? projects : firstSix;
-
   const projectInner = node => {
     const { frontmatter, html } = node;
-    const { github, external, title, tech } = frontmatter;
+    const { github, external, title, tech, range } = frontmatter;
 
     return (
       <div className="project-inner">
@@ -246,6 +245,12 @@ const Projects = () => {
               {title}
             </a>
           </h3>
+
+          {range && (
+            <p className="project-range" style={{ color: 'var(--light-slate)', fontFamily: 'var(--font-mono)', fontSize: 'var(--fz-xs)', marginTop: '10px', marginBottom: '15px' }}>
+              {range}
+            </p>
+          )}
 
           <div className="project-description" dangerouslySetInnerHTML={{ __html: html }} />
         </header>

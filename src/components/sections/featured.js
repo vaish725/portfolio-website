@@ -311,18 +311,16 @@ const Featured = () => {
         sort: { fields: [frontmatter___date], order: ASC }
       ) {
         edges {
-          node {
-            frontmatter {
+          node {            frontmatter {
               title
               cover {
                 childImageSharp {
                   gatsbyImageData(width: 700, placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
                 }
-              }
-              tech
+              }              tech
               github
               external
-              cta
+              range
             }
             html
           }
@@ -351,22 +349,26 @@ const Featured = () => {
         Some Things I’ve Built
       </h2>
 
-      <StyledProjectsGrid>
-        {featuredProjects &&
+      <StyledProjectsGrid>        {featuredProjects &&
           featuredProjects.map(({ node }, i) => {
             const { frontmatter, html } = node;
-            const { external, title, tech, github, cover, cta } = frontmatter;
+            const { external, title, tech, github, cover } = frontmatter;
             const image = getImage(cover);
 
             return (
-              <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
-                <div className="project-content">
+              <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>                <div className="project-content">
                   <div>
                     <p className="project-overline">Featured Project</p>
 
                     <h3 className="project-title">
                       <a href={external}>{title}</a>
                     </h3>
+
+                    {frontmatter.range && (
+                      <p className="project-range" style={{ color: 'var(--light-slate)', fontFamily: 'var(--font-mono)', fontSize: 'var(--fz-xs)', marginTop: '10px' }}>
+                        {frontmatter.range}
+                      </p>
+                    )}
 
                     <div
                       className="project-description"
@@ -379,20 +381,13 @@ const Featured = () => {
                           <li key={i}>{tech}</li>
                         ))}
                       </ul>
-                    )}
-
-                    <div className="project-links">
-                      {cta && (
-                        <a href={cta} aria-label="Course Link" className="cta">
-                          Learn More
-                        </a>
-                      )}
+                    )}                    <div className="project-links">
                       {github && (
                         <a href={github} aria-label="GitHub Link">
                           <Icon name="GitHub" />
                         </a>
                       )}
-                      {external && !cta && (
+                      {external && (
                         <a href={external} aria-label="External Link" className="external">
                           <Icon name="External" />
                         </a>
