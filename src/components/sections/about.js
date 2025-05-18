@@ -131,8 +131,7 @@ const About = () => {
     <StyledAboutSection id="about" ref={revealContainer}>
       <h2 className="numbered-heading">About Me</h2>
 
-      <div className="inner">
-        <StyledText>
+      <div className="inner">        <StyledText>
           <div>
             <p>
               Hello! My name is Vaishnavi and I'm a Machine Learning Engineer with a passion for building intelligent systems. My journey in technology began with computer science fundamentals and quickly evolved into a deep fascination with AI and computer vision.
@@ -156,14 +155,23 @@ const About = () => {
 
         <StyledPic>
           <div className="wrapper">
-            <StaticImage
+            <div 
               className="img"
-              src="../../images/me.jpg"
-              width={500}
-              quality={95}
-              formats={['AUTO', 'WEBP', 'AVIF']}
-              alt="Headshot"
-            />
+              style={{
+                height: "300px",
+                width: "300px",
+                backgroundColor: "#112240",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#64ffda",
+                fontSize: "16px",
+                fontFamily: "monospace",
+                borderRadius: "var(--border-radius)"
+              }}
+            >
+              <span>Vaishnavi Kamdi</span>
+            </div>
           </div>
         </StyledPic>
       </div>
