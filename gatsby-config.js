@@ -13,8 +13,7 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sitemap`,
-    `gatsby-plugin-robots-txt`,
-    {
+    `gatsby-plugin-robots-txt`,    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: 'Vaishnavi Kamdi',
@@ -26,7 +25,7 @@ module.exports = {
         icon: 'src/images/logo.png',
       },
     },
-    `gatsby-plugin-offline`,
+    // `gatsby-plugin-offline`, // Temporarily disabled due to ReadableStream issues
     {
       resolve: `gatsby-source-filesystem`,
       options: {
